@@ -5,7 +5,7 @@ const dbConfig = require("./app/config/db.config");
 const app = express();
 
 let corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8082"
 };
 
 app.use(cors(corsOptions));
@@ -20,7 +20,7 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb://sa:pmg123%21%40%23@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}?authSource=admin&readPreference=primary&appname=MainServer2&ssl=false`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/bookmark.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

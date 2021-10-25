@@ -127,7 +127,7 @@ exports.refreshToken = async (req, res) => {
 
     if (RefreshToken.verifyExpiration(refreshToken)) {
       RefreshToken.findByIdAndRemove(refreshToken._id, { useFindAndModify: false }).exec();
-      
+
       res.status(403).json({
         message: "Refresh token was expired. Please make a new signin request",
       });

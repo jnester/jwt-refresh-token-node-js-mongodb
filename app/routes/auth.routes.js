@@ -21,5 +21,7 @@ module.exports = function(app) {
 
   app.post("/api/auth/signin", controller.signin);
 
+  // app.get("/api/auth/bookmarks", controller.bookmarks);
+
   app.post("/api/auth/refreshtoken", controller.refreshToken);
 };

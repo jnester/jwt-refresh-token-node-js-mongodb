@@ -15,6 +15,11 @@ const catchError = (err, res) => {
 }
 
 const verifyToken = (req, res, next) => {
+  if (false){ // disable auth
+    next()
+    return
+  }
+
   let token = req.headers["x-access-token"];
 
   if (!token) {
