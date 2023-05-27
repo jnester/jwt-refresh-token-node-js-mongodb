@@ -14,6 +14,9 @@ exports.tags = async (req, res) => {
         // _id: {
         //   $ne: null
         // },
+        category: {
+          $ne: ""
+        },
         userid: req.userId
       },
       (err, bookmarks) => {
@@ -63,7 +66,7 @@ exports.getOne = async (req, res) => {
 
 exports.save = async (req, res) => {
   try {
-    Bookmark.findOneAndUpdate({
+    var doc = Bookmark.findOneAndUpdate({
       url: req.body.url,
       userid: req.userId
     }, req.body, { upsert: true }, function (err, doc) {
@@ -71,6 +74,8 @@ exports.save = async (req, res) => {
       return res.send('Succesfully saved.');
 
     });
+
+    doc.save();
   } catch (err) {
   }
 }
